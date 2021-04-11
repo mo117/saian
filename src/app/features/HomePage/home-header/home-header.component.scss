@@ -1,0 +1,29 @@
+.section {
+  margin-top: -200px;
+  padding-top: 178px;
+  background-image: url(../../../../assets/Images/background1.png);
+  background-size: cover;
+  padding-top: 100px;
+  h5 {
+    color: #f7be4b;
+    text-align: initial;
+
+    margin-top: 16%;
+  }
+  h1 {
+    padding: 50px 0px;
+    color: #131d50;
+    text-align: initial;
+    // width: 67%;
+    font-size: 60px;
+  }
+  p {
+    //   padding: 10px 201px;
+    // width: 63%;
+    text-align: initial;
+    color: #707070;
+  }
+  img {
+    width: 334px;
+  }
+}

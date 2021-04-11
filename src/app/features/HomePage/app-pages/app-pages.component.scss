@@ -1,0 +1,35 @@
+.section {
+  background-color: #FBFBFB;
+  background-size: cover;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  .text {
+      margin-top: 50px;
+  }
+  h5 {
+    color: #131d50;
+    // text-align: initial;
+
+    // margin-top: 16%;
+  }
+  h1 {
+    color: #131d50;
+    // text-align: initial;
+    width: 67%;
+    font-size: 60px;
+  }
+  p {
+    //   padding: 10px 201px;
+    width: 63%;
+    color: #707070;
+    margin: 0px 17%;
+    width: 63%;
+    // text-align: initial;
+    color: #707070;
+  }
+  img {
+      margin-top: 50px;
+    width: 47%;
+  }
+}

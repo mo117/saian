@@ -1,0 +1,583 @@
+<section class="section serivces-section service-one">
+  <div class="container">
+    <div class="row justify-content-center" style="padding-top: 52px">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs justify-content-center col-12">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>{{ "user" | translate }}</a>
+          <ng-template ngbNavContent style="width: 70%">
+            <div>
+              <form [formGroup]="LogInForm" (ngSubmit)="onSubmit(LogInForm)" class="col-12">
+                <div class="inputWithIcon row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-lg-9 col-md-12 col-sm-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="phone" (keyup)="checkuserphone($event)"
+                            placeholder="{{ 'phone number' | translate }}" class="form-control col-12" [ngClass]="{
+                              'is-invalid':
+                                typeingFirstName &&
+                                LogInForm.controls.phone.errors
+                            }" />
+                          <img src="assets/Images/phone.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-12 col-sm-12" style="padding: 0px">
+                        <div ngbDropdown class="d-inline-block" style="width: 100%">
+                          <a class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>
+                            <img src="{{ currentImage }}" />
+                            {{ CurrentphoneKey }}
+                          </a>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                            <p ngbDropdownItem class="btn btn-outline-primary" *ngFor="let size of countries"
+                              style="padding-bottom: 0px; margin-bottom: 0px" (click)="ChangeCountries(size)">
+                              <img src="{{ size.image }}" />
+                              {{ size.phoneKey }}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          LogInForm.controls.phone.invalid &&
+                          LogInForm.controls.phone.touched &&
+                          LogInForm.controls.phone.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="LogInForm.controls.phone.errors.required">{{ "requied" | translate }}</span>
+                        <span *ngIf="LogInForm.controls.phone.errors.pattern">{{
+                          "acceptNumberOnly" | translate
+                        }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12 name">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="FName" (keyup)="checkusername($event)"
+                            placeholder="{{ 'your name' | translate }}" class="form-control col-12" [ngClass]="{
+                              'is-invalid':
+                                typeingname && LogInForm.controls.FName.errors
+                            }" />
+                          <img src="assets/Images/useri.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          LogInForm.controls.FName.invalid &&
+                          LogInForm.controls.FName.touched &&
+                          LogInForm.controls.FName.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="LogInForm.controls.FName.errors.required">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="email" (keyup)="checkemail($event)"
+                            placeholder="{{ 'your email' | translate }}" class="form-control col-12" [ngClass]="{
+                              'is-invalid':
+                                typeingemail && LogInForm.controls.email.errors
+                            }" />
+                          <img src="assets/Images/email.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          LogInForm.controls.email.invalid &&
+                          LogInForm.controls.email.touched &&
+                          LogInForm.controls.email.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="LogInForm.controls.email.errors.required">{{ "requied" | translate }}</span>
+                        <span *ngIf="LogInForm.controls.email.errors.email">{{
+                          "invildEmail" | translate
+                        }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="address" placeholder="{{ 'your address' | translate }}"
+                            class="form-control col-12" />
+                          <!-- <a class="btn  {{ 'btn-show' | translate }}">
+                  <i class="fas fa-map-marker"></i>
+                </a> -->
+                          <img src="assets/Images/location3.png" class="{{ 'iconImage' | translate }}" />
+                          <a (click)="selectMap(Shipping)" class="btn  {{'addbtn' | translate}}" style="    position: absolute;
+    top: 30px;
+    color: #fff;
+    height: 57px;
+    background-color: #f7be4b;">
+                            <!-- تحديد -->
+
+                            <img src="assets/Images/loactionsss.png" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          LogInForm.controls.address.invalid &&
+                          LogInForm.controls.address.touched &&
+                          LogInForm.controls.address.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="LogInForm.controls.address.errors.required">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="password" formControlName="password" class="form-control col-12"
+                            placeholder="{{ 'password' | translate }}" />
+                          <img src="assets/Images/password.png" class="{{ 'iconImage' | translate }}" />
+                          <!-- <a
+                  class="btn  {{ 'btn-show' | translate }}"
+                  (click)="ChangePasswordStyle()"
+                  *ngIf="PasswordType === 'password'"
+                >
+                  <img src="assets/Images/eye.png" class="{{'iconImage' | translate}}" />
+                </a>
+                <a
+                  class="btn  {{ 'btn-show' | translate }}"
+                  (click)="ChangePasswordStyle()"
+                  *ngIf="PasswordType === 'text'"
+                >
+                  <img src="assets/Images/eye2.png" class="{{'iconImage' | translate}}" />
+                </a> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          LogInForm.controls.password.invalid &&
+                          LogInForm.controls.password.touched &&
+                          LogInForm.controls.password.dirty
+                        " style="color: red; margin: 0px 17px">
+                        <span *ngIf="LogInForm.controls.password.errors.required">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row FormLink justify-content-center">
+                  <button type="submit" class="btn LogInBtn">
+                    {{ "save" | translate }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>{{ "Service Supplier" | translate }}</a>
+          <ng-template ngbNavContent style="width: 70%">
+            <div>
+              <form [formGroup]="SupplierForm" (ngSubmit)="onSubmitSupplier(SupplierForm)" class="col-12"
+                *ngIf="currentPage == 'first'">
+                <div class="inputWithIcon row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-lg-9 col-md-12 col-sm-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="phone" (keyup)="SupplierFormphone($event)"
+                            placeholder="{{ 'phone number' | translate }}" class="form-control col-12" [ngClass]="{
+                              'is-invalid':
+                                typeingFirstName1 &&
+                                SupplierForm.controls.phone.errors
+                            }" />
+                          <img src="assets/Images/phone.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-12 col-sm-12" style="padding: 0px">
+                        <div ngbDropdown class="d-inline-block" style="width: 100%">
+                          <a class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>
+                            <img src="{{ currentImageSupplier }}" />
+                            {{ CurrentphoneKeySupplier }}
+                          </a>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                            <p (click)="ChangeCountriesSupplier(size)" ngbDropdownItem class="btn btn-outline-primary"
+                              *ngFor="let size of countries" style="padding-bottom: 0px; margin-bottom: 0px">
+                              <img src="{{ size.image }}" />
+                              {{ size.phoneKey }}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierForm.controls.phone.invalid &&
+                          SupplierForm.controls.phone.touched &&
+                          SupplierForm.controls.phone.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="SupplierForm.controls.phone.errors.required">{{ "requied" | translate }}</span>
+                        <span
+                          *ngIf="SupplierForm.controls.phone.errors.pattern">{{ "acceptNumberOnly" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12 name">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="FName" (keyup)="checkusernameSupplierForm($event)"
+                            placeholder="{{ 'your name' | translate }}" class="form-control col-12" [ngClass]="{
+                              'is-invalid':
+                                typeingname1 &&
+                                SupplierForm.controls.FName.errors
+                            }" />
+                          <img src="assets/Images/useri.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierForm.controls.FName.invalid &&
+                          SupplierForm.controls.FName.touched &&
+                          SupplierForm.controls.FName.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="SupplierForm.controls.FName.errors.required">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="email" (keyup)="checkemailSupplierForm($event)"
+                            placeholder="{{ 'your email' | translate }}" class="form-control col-12" [ngClass]="{
+                              'is-invalid':
+                                typeingemail1 &&
+                                SupplierForm.controls.email.errors
+                            }" />
+                          <img src="assets/Images/email.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierForm.controls.email.invalid &&
+                          SupplierForm.controls.email.touched &&
+                          SupplierForm.controls.email.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="SupplierForm.controls.email.errors.required">{{ "requied" | translate }}</span>
+                        <span *ngIf="SupplierForm.controls.email.errors.email">{{ "invildEmail" | translate }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="address" placeholder="{{ 'your address' | translate }}"
+                            class="form-control col-12" />
+                          <!-- <a class="btn  {{ 'btn-show' | translate }}">
+                <i class="fas fa-map-marker"></i>
+              </a> -->
+                          <img src="assets/Images/location3.png" class="{{ 'iconImage' | translate }}" />
+                          <a (click)="selectMap(Shipping)" class="btn {{'addbtn' | translate}}" style="    position: absolute;
+    top: 30px;
+   
+    color: #fff;
+    height: 57px;
+    background-color: #f7be4b;">
+                            <!-- تحديد -->
+
+                            <img src="assets/Images/loactionsss.png" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierForm.controls.address.invalid &&
+                          SupplierForm.controls.address.touched &&
+                          SupplierForm.controls.address.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="SupplierForm.controls.address.errors.required">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <select formControlName="supplierType">
+                            <option value="" disabled selected hidden>
+                              {{ "Service Supplier Type" | translate }}
+                            </option>
+                            <option value="2">
+                              {{ "Individuals" | translate }}
+                            </option>
+                            <option value="3">
+                              {{ "organizations" | translate }}
+                            </option>
+                          </select>
+                          <img src="assets/Images/supplier.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierForm.controls.supplierType.invalid &&
+                          SupplierForm.controls.supplierType.touched &&
+                          SupplierForm.controls.supplierType.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="
+                            SupplierForm.controls.supplierType.errors.required
+                          ">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="password" formControlName="password" class="form-control col-12"
+                            placeholder="{{ 'password' | translate }}" />
+                          <img src="assets/Images/password.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierForm.controls.password.invalid &&
+                          SupplierForm.controls.password.touched &&
+                          SupplierForm.controls.password.dirty
+                        " style="color: red; margin: 0px 17px">
+                        <span *ngIf="SupplierForm.controls.password.errors.required">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row FormLink justify-content-center">
+                  <button type="submit" class="btn LogInBtn">
+                    {{ "next" | translate }}
+                  </button>
+                </div>
+              </form>
+              <form [formGroup]="SupplierProfile" (ngSubmit)="ComplitSupplier(SupplierProfile)" class="col-12"
+                *ngIf="currentPage == 'second'">
+                <div class="inputWithIcon row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="id_number" (keyup)="checkuserphone($event)"
+                            placeholder="{{ 'ID Number' | translate }}" class="form-control col-12" [ngClass]="{
+                              'is-invalid':
+                                typeingFirstName &&
+                                SupplierProfile.controls.id_number.errors
+                            }" />
+                          <img src="assets/Images/id.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierProfile.controls.id_number.invalid &&
+                          SupplierProfile.controls.id_number.touched &&
+                          SupplierProfile.controls.id_number.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="
+                            SupplierProfile.controls.id_number.errors.required
+                          ">{{ "requied" | translate }}</span>
+                        <span *ngIf="
+                            SupplierProfile.controls.id_number.errors.pattern
+                          ">{{ "acceptNumberOnly" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <img [src]="imgSrc" class="inimage" (click)="fileUploader.click()"
+                        style="width: 61px; height: 45px; z-index: 2; top: 19px" />
+                      <div class="col-12" style="padding: 0px">
+                        <fieldset class="form-group" style="margin-bottom: -14px">
+                          <div class="custom-file mx-auto d-block">
+                            <input type="file" accept="image/*" #fileUploader (change)="showPreview($event)"
+                              class="custom-file-input" id="inputGroupFile01" value="image" />
+                            <label class="custom-file-label" for="inputGroupFile01" style="
+                                text-align: end;
+                                height: 58px;
+                                border: 1px solid #f7be4b;
+                                margin-top: 13px;
+                              ">
+                              <img src="assets/Images/attached.png" class="{{ 'iconImage' | translate }}" /></label>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <input type="text" formControlName="experience" placeholder="{{ 'experience' | translate }}"
+                            class="form-control col-12" />
+                          <!-- <a class="btn  {{ 'btn-show' | translate }}">
+                  <i class="fas fa-map-marker"></i>
+                </a> -->
+                          <img src="assets/Images/location3.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierProfile.controls.experience.invalid &&
+                          SupplierProfile.controls.experience.touched &&
+                          SupplierProfile.controls.experience.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="
+                            SupplierProfile.controls.experience.errors.required
+                          ">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <select formControlName="service_id">
+                            <option value="" disabled selected hidden>
+                              {{ "Service Type" | translate }}
+                            </option>
+                            <option *ngFor="let size of services" value="{{ size.id }}">
+                              {{ size.name }}
+                            </option>
+                          </select>
+                          <img src="assets/Images/supplier.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierProfile.controls.service_id.invalid &&
+                          SupplierProfile.controls.service_id.touched &&
+                          SupplierProfile.controls.service_id.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="
+                            SupplierProfile.controls.service_id.errors.required
+                          ">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+
+                  <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row" style="justify-content: center">
+                          <select formControlName="city_id">
+                            <option value="" disabled selected hidden>
+                              {{ "Cities" | translate }}
+                            </option>
+                            <option *ngFor="let size of Cities" value="{{ size.id }}">
+                              {{ size.name }}
+                            </option>
+                          </select>
+                          <img src="assets/Images/city.png" class="{{ 'iconImage' | translate }}" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 errormassage">
+                      <div *ngIf="
+                          SupplierProfile.controls.city_id.invalid &&
+                          SupplierProfile.controls.city_id.touched &&
+                          SupplierProfile.controls.city_id.dirty
+                        " style="color: red; text-align: initial">
+                        <span *ngIf="
+                            SupplierProfile.controls.city_id.errors.required
+                          ">{{ "requied" | translate }}</span>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                </div>
+
+                <div class="row FormLink justify-content-center">
+                  <button type="submit" class="btn LogInBtn">
+                    {{ "next" | translate }}
+                  </button>
+                </div>
+              </form>
+
+              <form [formGroup]="termsForm" (ngSubmit)="termsSubmit(termsForm)" class="col-12"
+                *ngIf="currentPage == 'third'">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row" style="
+                        justify-content: flex-end;
+                        margin-top: 14px;
+                        direction: ltr;
+                      ">
+                      <label for="is_default" class="" style="text-align: initial; padding: 0px 11px">{{ terms }}
+                      </label>
+                      <input type="checkbox" formControlName="is_default" class="form-control"
+                        style="width: 20px; height: 20px; border-radius: 5px" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row FormLink justify-content-center">
+                  <button type="submit" class="btn LogInBtn">
+                    {{ "save" | translate }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</section>
+
+
+<ng-template #Shipping let-c="close" let-d="dismiss">
+  <div dir="{{ 'dir' | translate }}">
+    <div class="modal-header row">
+      <h5 class="modal-title col-10 {{ 'text' | translate }}" id="modal-basic-title" style="    text-align: initial;">
+        {{'address' | translate}}
+      </h5>
+      <button type="button" class="close col-2" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card cardinmob" style="width: 100%">
+        <ngx-place-picker (locationChanged)="this.logLocationChange($event)" [enablePlacesSearch]="true"
+          [enableCurrentLocation]="true" [defaultLocation]="{ lat: defullat, lng: defullang, zoom: 17 }">
+        </ngx-place-picker>
+
+        <div class="col-md-12" style="text-align: center">
+          <button (click)="d('Cross click')" class="btn addbtn" style="    top: 30px;
+          color: #fff;
+          height: 57px;
+          background-color: #f7be4b;
+          width: 100%;
+          margin-top: 15px;;">حفظ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

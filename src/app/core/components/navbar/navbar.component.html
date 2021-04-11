@@ -1,0 +1,50 @@
+<header class="header header--intro">
+  <div class="container">
+    <div class="header__content">
+      <div class="header__burger" (click)="OpenMenu()">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="header__logo">
+        <a routerLink="/home"><img src="assets/Images/logo.png" /></a>
+      </div>
+      <nav class="header__nav">
+        <ul>
+          <li>
+            <a
+              (click)="gotoSection('home', 0);closeNav()"
+              [ngClass]="{ active: currentPage === 0 }"
+              >{{ "Home" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="gotoSection('about', 1);closeNav()"
+              [ngClass]="{ active: currentPage === 1 }"
+            >
+              {{ "About Us" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              (click)="gotoSection('contact', 2);closeNav()"
+              [ngClass]="{ active: currentPage === 2 }"
+              >{{ "Contact Us" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/joinus"
+              (click)="closeNav()"
+              [ngClass]="{ active: currentPage === 3 }"
+              class="join"
+              >{{ "Join Us" | translate }}</a
+            >
+          </li>
+          <!-- <li>
+              <a>{{ "Join Us" | translate }}</a>
+            </li> -->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
